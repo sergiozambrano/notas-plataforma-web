@@ -20,11 +20,14 @@ npm test         # pruebas unitarias (Vitest)
 
 Al abrir la aplicación por primera vez se cargan datos de demostración. En la pantalla de inicio de sesión, el botón **Restablecer datos de demostración** borra todo y vuelve a cargarlos.
 
-## Despliegue en Cloudflare Pages
+## Despliegue en Cloudflare (Workers con archivos estáticos)
 
 - Comando de build: `npm run build`
-- Carpeta de salida: `dist`
-- `public/_redirects` contiene `/* /index.html 200` para que las rutas del SPA funcionen al recargar.
+- Comando de despliegue: `npx wrangler deploy`
+- Carpeta de salida: `dist` (configurada en `wrangler.jsonc`).
+- Las rutas del SPA funcionan al recargar gracias a `"not_found_handling": "single-page-application"` en `wrangler.jsonc`.
+
+No se usa `public/_redirects`: Cloudflare Workers rechaza la regla `/* /index.html 200` por bucle infinito (error 100324). Si se despliega en Cloudflare Pages en lugar de Workers, hay que crear `public/_redirects` con `/* /index.html 200`.
 
 ## Credenciales de demostración
 
