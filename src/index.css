@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Foco visible en todos los controles (teal-700). */
+:focus-visible {
+  outline: 2px solid #0f766e;
+  outline-offset: 2px;
+}
